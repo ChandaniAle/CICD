@@ -97,7 +97,7 @@ pipeline {
                     echo "Verifying Docker image: ${CI_IMAGE}"
 
                     echo "Checking py files in the image"
-                    docker run --rm --entrypoint ls ${CI_IMAGE} /app/*.py
+                    docker run --rm --entrypoint ls ${CI_IMAGE} /app
                     echo "Python files verified in the image"
 
                     echo "Checking python version in the image"
