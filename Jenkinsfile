@@ -75,9 +75,7 @@ pipeline {
             agent none
             steps {
                 timeout(time: 5, unit: 'MINUTES') {
-                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                        waitForQualityGate abortPipeline: false 
-                    }
+                    waitForQualityGate abortPipeline: false 
 
                 }
             }
