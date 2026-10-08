@@ -20,27 +20,6 @@ services:
       timeout: 10s
       retries: 2
 
-  backend-api: 
-    build: .
-    container_name: chadani-backend-api
-    ports:
-    # - host:container
-      - "8000:8000"
-    environment:
-      # These match the ${VAR} names in your application.properties
-      - DB_HOST=db-service
-      - DB_PORT=5432
-      - DB_NAME=${DB_NAME:-studentdb}
-      - DB_USER=${DB_USER:-postgres}
-      - DB_PASSWORD=${DB_PASSWORD:-password}
-    # volumes:
-    #   - /var/log:/var/log
-    #   - ./src:/src
-    networks:
-      - private-net
-    depends_on:
-      db-service:
-        condition: service_healthy # Wait for the DB to be fully ready
 
 networks:
   private-net:
