@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  db-service:
+    image: postgres:13
+    container_name: db-service
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${DB_NAME:-chadani_db}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-chadani_pass}
+      POSTGRES_USER: ${DB_USER:-chadani_user}
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - private-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-U", "${DB_USER:-chadani_user}", "-d","${DB_NAME:-chadani_db}", "arg"]
+      interval: 20s
+      timeout: 10s
+      retries: 2
+
+
+networks:
+  private-net:
+    name: private-net
+    driver: bridge
+
+volumes:
+  db-data:  
