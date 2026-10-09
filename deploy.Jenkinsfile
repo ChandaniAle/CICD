@@ -25,7 +25,7 @@ pipeline {
         IMAGE_TAG       = "${env.GIT_COMMIT.take(7)}"
         
         // Deployment server configuration
-        DEPLOY_SERVER   = '184.72.98.217'
+        DEPLOY_SERVER   = '34.201.242.197'
         DEPLOY_USER     = 'ubuntu'
         DEPLOY_PORT     = '22'
         APP_PORT        = '8000'
